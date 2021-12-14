@@ -1,0 +1,14 @@
+GLPI:
+  User: rpelger
+  Address: 10.1.11.58
+  Port: 64444
+
+MACHINE 1:
+  User: Machine 1
+  Address: machine1.ip.here
+  Port:
+
+MACHINE 2:
+  User: Machine 2
+  Address: machine2.ip.here
+  Port:
