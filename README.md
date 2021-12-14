@@ -1,4 +1,5 @@
-# SSHman - Excessively simple SSH connection manager written in Python
+# SSHman   
+_Excessively simple SSH connection manager written in Python_
 ------
 
 SSHman is a very basic command line utility for quickly viewing and accessing SSH connection details.  
