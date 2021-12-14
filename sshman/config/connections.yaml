@@ -1,7 +1,7 @@
 GLPI:
-  User: rpelger
-  Address: 10.1.11.58
-  Port: 64444
+  User: user
+  Address: IP
+  Port: port
 
 MACHINE 1:
   User: Machine 1
