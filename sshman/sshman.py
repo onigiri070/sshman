@@ -10,59 +10,38 @@ def main():
     # Initialize variables
     userResp = "z"
     runDir = os.path.dirname(os.path.abspath(__file__))
-    # Connection file paths
-    custConnFile = helpers.read_config(runDir)
-    defaultConnFile = runDir + "/config/connections.yaml"
-    # Dictionaries
-    defaultConnData = helpers.read_yaml(defaultConnFile) 
-    custConnData = helpers.read_yaml(custConnFile)
-
+    connFile = helpers.read_config(runDir)
+    connData = helpers.read_yaml(connFile)
+     
     # Main menu
     print("Welcome to SSHman. What would you like to do?\n")
     while userResp:
-        print("Press one of the following:\n")
-        print("  P: Print defined connections information to the screen\n")
-        print("  S: Begin SSH session\n")
+        print("\nPress one of the following:\n")
+        print("  P: Print defined connections to the screen\n")
+        print("  N: New SSH session\n")
+        print("  R: Most recent session\n")
         print("  E: Exit the program\n")
         userResp = input("> ").lower()
         
         # Options handling
         # P: PRINT CONNECTIONS 
         if userResp == 'p':
-            subResp = 'x'
-            while subResp:
-                print("\nWhich connections would you like to see?\n")
-                print("  C: Custom connections file\n")
-                print("  D: Default connections file\n")
-                print("  B: Go back to main menu\n")
-                subResp = input("> ").lower()
-                print()
-                if subResp == 'c':
-                    # Print path to file
-                    print(custConnFile)
-                    # Print dictionary contents
-                    helpers.print_dict(custConnData)
-                elif subResp == 'd':
-                    # Print path to file
-                    print(defaultConnFile)
-                    # Print dictionary contents
-                    helpers.print_dict(defaultConnData)
-                elif subResp == 'b':
-                    break
-                else:
-                    print("Invalid. Please choose a valid option")
-        # S: START SSH SESSION
-        elif userResp == 's':
-            print("\n[C]ustom conenction or [D]efault?\n")
-            dict = input("> ").lower()
+            print(connFile)
+            helpers.print_dict(connData)
+        # N: NEW SSH SESSION
+        elif userResp == 'n':
             print("\nConnection name:\n")
             conn = input("> ").upper()
-            if dict == 'c':
-                helpers.start_session(custConnData, conn)
-                break
-            elif dict == 'd':
-                helpers.start_session(defaultConnData, conn)
-                break
+            helpers.start_session(connData, conn)
+            writeString = str("LastUsed: " + conn)
+            helpers.write_file(connFile, "LastUsed:", writeString)
+            break
+        # R: RECENT SESSION
+        elif userResp == 'r':
+            recent = connData.get('LastUsed', 'No recent connection found')
+            print(f"\nStarting new session on {recent}...\n\n")
+            helpers.start_session(connData, recent)
+            break
         # E: EXIT
         elif userResp == 'e':
             print("\nExiting. Goodbye!")
@@ -72,7 +51,6 @@ def main():
 
     sys.exit()
 
-# __name__ check
 if __name__ == "__main__":
     main()
 

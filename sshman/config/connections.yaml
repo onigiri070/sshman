@@ -1,14 +1,17 @@
-GLPI:
-  User: user
-  Address: IP
-  Port: port
-
 MACHINE 1:
-  User: Machine 1
-  Address: machine1.ip.here
-  Port:
+  User:
+  Address: 
+  Port: 
 
 MACHINE 2:
-  User: Machine 2
-  Address: machine2.ip.here
+  User: 
+  Address: 
+  Port: 
+
+MACHINE 3:
+  User: 
+  Address: 
   Port:
+
+RECENT:
+  LastUsed: 
