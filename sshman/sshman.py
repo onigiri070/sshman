@@ -38,9 +38,10 @@ def main():
             break
         # R: RECENT SESSION
         elif userResp == 'r':
-            recent = connData.get('LastUsed', 'No recent connection found')
-            print(f"\nStarting new session on {recent}...\n\n")
-            helpers.start_session(connData, recent)
+            recent = connData.get('RECENT', 'No recent connection found')
+            lastUsed = recent.get('LastUsed', 'No connection found')
+            print(f"\nStarting new session on {lastUsed}...\n\n")
+            helpers.start_session(connData, lastUsed)
             break
         # E: EXIT
         elif userResp == 'e':
