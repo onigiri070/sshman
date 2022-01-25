@@ -15,7 +15,7 @@ def main():
      
     # Main menu
     print("Welcome to SSHman. What would you like to do?\n")
-    while userResp:
+    while userResp != 'e':
         print("\nPress one of the following:\n")
         print("  P: Print defined connections to the screen\n")
         print("  N: New SSH session\n")
